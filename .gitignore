@@ -1,8 +1,9 @@
 
 # Dependency directories
 node_modules/
-# Ignora los archivos relacionados a API keys
+# Ignora los archivos 
 .env
+nota_git.txt
 
 
 
