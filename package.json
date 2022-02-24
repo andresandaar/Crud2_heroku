@@ -6,6 +6,10 @@
 	"scripts": {
 		"start": " node src/index.js"
 	},
+	"engines": {
+		"node": "16.13.0",
+		"npm": "8.1.0"
+	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
@@ -18,4 +22,3 @@
 		"mysql": "^2.18.1"
 	}
 }
-
