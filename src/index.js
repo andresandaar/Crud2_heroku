@@ -15,7 +15,7 @@ app.use(require('./routes/employess'));
 //starting server
 
 app.listen(app.get('port'), () => {
-	console.log(`server funcionando en el puerto: ${app.get('port')}`);
+	console.log(`server funcionando puerto: ${app.get('port')}`);
 });
 
 //mysql://bf0533ff9c5545:fc6e77a3@eu-cdbr-west-02.cleardb.net/heroku_a8365fb4a79f994?reconnect=true
