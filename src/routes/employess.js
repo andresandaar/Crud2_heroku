@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
 //CREAR DATOS
 router.post('/', (req, res) => {
 	const { id, name, last_name, salary } = req.body;
-	console.log(id, name, last_name, salary);
+	/* console.log(id, name, last_name, salary); */
 	const query = `
    CALL usuariosAddOrEdit(?,?,?,?);`;
 	mysqlConnection.query(

@@ -18,5 +18,11 @@ app.listen(app.get('port'), () => {
 	console.log(`server funcionando puerto: ${app.get('port')}`);
 });
 
-//mysql://bf0533ff9c5545:fc6e77a3@eu-cdbr-west-02.cleardb.net/heroku_a8365fb4a79f994?reconnect=true
+//CLEARDB_DATABASE_URL mysql://bf0533ff9c5545:fc6e77a3@eu-cdbr-west-02.cleardb.net/heroku_a8365fb4a79f994?reconnect=true
+
+/* user: bf0533ff9c5545
+contraseña:fc6e77a3
+host: eu - cdbr - west - (02).cleardb.net
+nombre_databae:heroku_a8365fb4a79f994 */
+
 //https://docs.mikelgoig.com/nodejs/despliegue-en-heroku.html#variables-de-entorno
