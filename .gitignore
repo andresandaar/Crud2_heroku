@@ -2,7 +2,7 @@
 # Dependency directories
 node_modules/
 # Ignora los archivos relacionados a API keys
-.env
+/.env
 
 
 
