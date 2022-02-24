@@ -38,12 +38,7 @@ router.post('/', (req, res) => {
 	const { id, name, last_name, salary } = req.body;
 	console.log(id, name, last_name, salary);
 	const query = `
-   SET @id =?;
-   SET @name =?;
-   SET @last_name =?;
-   SET @salary =?;
-   CALL usuariosAddOrEdit(@id,@name,@last_name,@salary);
-   `;
+   CALL usuariosAddOrEdit(?,?,?,?);`;
 	mysqlConnection.query(
 		query,
 		[id, name, last_name, salary],
@@ -62,11 +57,7 @@ router.put('/:id', (req, res) => {
 	const { name, last_name, salary } = req.body;
 	const { id } = req.params;
 	const query = `
-   SET @id =?;
-   SET @name =?;
-   SET @last_name =?;
-   SET @salary =?;
-   CALL usuariosAddOrEdit(@id,@name,@last_name,@salary);`;
+   CALL usuariosAddOrEdit(?,?,?,?);`;
 	mysqlConnection.query(
 		query,
 		[id, name, last_name, salary],
