@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
 	);
 });
 
-router.get('/:email,password', (req, res) => {
+router.get('/:email:password', (req, res) => {
 	//para obtener y ver el valor de id  que le ingresamos.
 	// ese id viene en una constante llamda req.params.id
 	//https://expressjs.com/en/guide/routing.html
@@ -43,7 +43,8 @@ router.get('/:email,password', (req, res) => {
 	const { password } = req.params;
 	mysqlConnection.query(
 		//inyecciones sql
-		'SELECT email, password FROM usuarios WHERE=(email,password)=(?,?)',
+		'SELECT email, password FROM usuarios WHERE (email = ? and password=?)',
+		/* 	'SELECT email, password FROM usuarios WHERE=(email,password)=(?,?)', */
 		[email],
 		[password],
 		(err, rows, fields) => {
