@@ -35,16 +35,16 @@ router.get('/:id', (req, res) => {
 });
 //CREAR DATOS
 router.post('/', (req, res) => {
-	const { id, name, last_name, salary } = req.body;
+	const { id, names, email, password } = req.body;
 	/* console.log(id, name, last_name, salary); */
 	const query = `
    CALL usuariosAddOrEdit(?,?,?,?);`;
 	mysqlConnection.query(
 		query,
-		[id, name, last_name, salary],
+		[id, names, email, password],
 		(err, rows, fields) => {
 			if (!err) {
-				res.json({ status: 'USUARIOS GUARDADOS' });
+				res.json({ status: 'Usuario guardado' });
 			} else {
 				console.log(err);
 			}
@@ -54,16 +54,16 @@ router.post('/', (req, res) => {
 //actualizar datos de la tabla
 
 router.put('/:id', (req, res) => {
-	const { name, last_name, salary } = req.body;
+	const { names, email, password } = req.body;
 	const { id } = req.params;
 	const query = `
    CALL usuariosAddOrEdit(?,?,?,?);`;
 	mysqlConnection.query(
 		query,
-		[id, name, last_name, salary],
+		[id, names, email, password],
 		(err, rows, fields) => {
 			if (!err) {
-				res.json({ status: 'usuario actualizado' });
+				res.json({ status: 'Usuario actualizado' });
 			} else {
 				console.log(err);
 			}
@@ -78,7 +78,7 @@ router.delete('/:id', (req, res) => {
 		[id],
 		(err, rows, fields) => {
 			if (!err) {
-				res.json({ status: 'usuarios eliminado' });
+				res.json({ status: 'Usuarios eliminado' });
 			} else {
 				console.log(err);
 			}

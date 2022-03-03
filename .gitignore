@@ -1,6 +1,7 @@
 
 # Dependency directories
 node_modules/
+INFODB/
 # Ignora los archivos 
 .env
 nota_git.txt
