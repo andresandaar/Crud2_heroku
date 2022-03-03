@@ -43,7 +43,7 @@ router.get('/:email,password', (req, res) => {
 	const { password } = req.params;
 	mysqlConnection.query(
 		//inyecciones sql
-		'SELECT email, password FROM usuarios WHERE (email,password)=(?,?)',
+		'SELECT email, password FROM usuarios WHERE=(email,password)=(?,?)',
 		[email],
 		[password],
 		(err, rows, fields) => {
