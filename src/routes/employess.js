@@ -44,8 +44,12 @@ router.post('/consulta', (req, res) => {
 		[email, password],
 		(err, rows, fields) => {
 			if (!err) {
+				if (!rows) {
+					res.json({ status: 'El usuario no existe en la base de datos' });
+				} else {
+					res.json({ status: 'El usuario existe en la base de datos' });
+				}
 				/* res.json(rows[0]); */
-				res.json({ status: 'El usuario existe en la base de datos' });
 			} else {
 				console.log(err);
 			}
