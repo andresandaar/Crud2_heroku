@@ -59,7 +59,7 @@ router.post('/consulta', (req, res) => {
 router.post('/', (req, res) => {
 	const { id, names, email, password } = req.body;
 	/* console.log(id, name, last_name, salary); */
-	mysqlConnection.query();
+	mysqlConnection.query('SET @auto_increment_increment = 1');
 	const query = `
    CALL usuariosAddOrEdit(?,?,?,?);`;
 	mysqlConnection.query(

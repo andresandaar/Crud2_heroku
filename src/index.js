@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express'); //retorna un obejto
 const app = express(); // que se almacenara en una constante app
+var cors = require('cors');
+app.use(cors());
 
 // Settings (aqui definiremos el puerto, entorno de desarrollo, motor de plantilla)
 app.set('port', process.env.PORT || 3001);
