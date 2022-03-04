@@ -3,7 +3,7 @@ const router = express.Router();
 const mysqlConnection = require('../database/database');
 
 //consultar datos
-router.get('/', (req, res) => {
+router.get('/todos', (req, res) => {
 	//le indicamos que de la tabla usuarios2  selecione todo los datos y los muestre
 	mysqlConnection.query('SELECT * FROM usuarios', (err, rows, fields) => {
 		if (!err) {
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.get('/:id', (req, res) => {
+router.get('/consultarid:id', (req, res) => {
 	//para obtener y ver el valor de id  que le ingresamos.
 	// ese id viene en una constante llamda req.params.id
 	//https://expressjs.com/en/guide/routing.html
@@ -33,12 +33,8 @@ router.get('/:id', (req, res) => {
 		}
 	);
 });
-
+//consultar usuarios ppor corrreo y contraseña
 router.post('/consulta', (req, res) => {
-	//para obtener y ver el valor de id  que le ingresamos.
-	// ese id viene en una constante llamda req.params.id
-	//https://expressjs.com/en/guide/routing.html
-	//https://www.geeksforgeeks.org/express-js-req-params-property/
 	const { email } = req.body;
 	const { password } = req.body;
 	mysqlConnection.query(
@@ -48,7 +44,8 @@ router.post('/consulta', (req, res) => {
 		[email, password],
 		(err, rows, fields) => {
 			if (!err) {
-				res.json(rows[0]);
+				/* res.json(rows[0]); */
+				res.json({ status: 'El usuario existe en la base de datos' });
 			} else {
 				console.log(err);
 			}
@@ -56,10 +53,10 @@ router.post('/consulta', (req, res) => {
 	);
 });
 //CREAR DATOS
-router.post('/', (req, res) => {
+router.post('/registro', (req, res) => {
 	const { id, names, email, password } = req.body;
 	/* console.log(id, name, last_name, salary); */
-	/* 	mysqlConnection.query('SET @auto_increment_increment =1'); */
+	/* mysqlConnection.query('SET @auto_increment_increment =1'); */
 	const query = `
    CALL usuariosAddOrEdit(?,?,?,?);`;
 	mysqlConnection.query(
@@ -76,7 +73,7 @@ router.post('/', (req, res) => {
 });
 //actualizar datos de la tabla
 
-router.put('/:id', (req, res) => {
+router.put('/actualizar:id', (req, res) => {
 	const { names, email, password } = req.body;
 	const { id } = req.params;
 	const query = `
@@ -94,7 +91,7 @@ router.put('/:id', (req, res) => {
 	);
 });
 // borrar usuarios
-router.delete('/:id', (req, res) => {
+router.delete('/eliminar:id', (req, res) => {
 	const { id } = req.params;
 	mysqlConnection.query(
 		'DELETE FROM usuarios WHERE id = ?',
