@@ -44,9 +44,9 @@ router.post('/consulta', (req, res) => {
 		[email, password],
 		(err, rows, fields) => {
 			if (!err) {
-				if (rows) {
+				if (rows[0]) {
 					res.json({
-						status: `El usuario ${rows.names} existe en la base de datos `,
+						status: `El usuario ${rows[0].names} existe en la base de datos `,
 					});
 				} else {
 					res.json({ status: 'El usuario no existe en la base de datos' });
@@ -60,6 +60,7 @@ router.post('/consulta', (req, res) => {
 });
 //CREAR DATOS
 router.post('/registro', (req, res) => {
+	mysqlConnection.query('SET SESSION auto_increment_increment=1');
 	const { id, names, email, password } = req.body;
 	/* console.log(id, name, last_name, salary); */
 	/* mysqlConnection.query('SET @auto_increment_increment =1'); */
