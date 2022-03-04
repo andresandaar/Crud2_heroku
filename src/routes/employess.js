@@ -14,7 +14,7 @@ router.get('/todos', (req, res) => {
 	});
 });
 
-router.get('/consultarid:id', (req, res) => {
+router.get('/consultarid/:id', (req, res) => {
 	//para obtener y ver el valor de id  que le ingresamos.
 	// ese id viene en una constante llamda req.params.id
 	//https://expressjs.com/en/guide/routing.html
@@ -73,7 +73,7 @@ router.post('/registro', (req, res) => {
 });
 //actualizar datos de la tabla
 
-router.put('/actualizar:id', (req, res) => {
+router.put('/actualizar/:id', (req, res) => {
 	const { names, email, password } = req.body;
 	const { id } = req.params;
 	const query = `
@@ -91,7 +91,7 @@ router.put('/actualizar:id', (req, res) => {
 	);
 });
 // borrar usuarios
-router.delete('/eliminar:id', (req, res) => {
+router.delete('/eliminar/:id', (req, res) => {
 	const { id } = req.params;
 	mysqlConnection.query(
 		'DELETE FROM usuarios WHERE id = ?',
