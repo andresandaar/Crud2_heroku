@@ -34,17 +34,18 @@ router.get('/:id', (req, res) => {
 	);
 });
 
-router.get('/:email', (req, res) => {
+router.post('/consulta', (req, res) => {
 	//para obtener y ver el valor de id  que le ingresamos.
 	// ese id viene en una constante llamda req.params.id
 	//https://expressjs.com/en/guide/routing.html
 	//https://www.geeksforgeeks.org/express-js-req-params-property/
-	const { email } = req.params;
+	const { email } = req.body;
+	const { password } = req.body;
 	mysqlConnection.query(
 		//inyecciones sql
-		/* 'SELECT email, password FROM usuarios WHERE (email = ? and password=?)', */
-		'SELECT email, password FROM usuarios WHERE email=?',
-		[email],
+		'SELECT names, email, password FROM usuarios WHERE (email = ? and password=?)',
+		/* 'SELECT email, password FROM usuarios WHERE email=?' */
+		[email, password],
 		(err, rows, fields) => {
 			if (!err) {
 				res.json(rows[0]);
@@ -58,6 +59,7 @@ router.get('/:email', (req, res) => {
 router.post('/', (req, res) => {
 	const { id, names, email, password } = req.body;
 	/* console.log(id, name, last_name, salary); */
+	mysqlConnection.query();
 	const query = `
    CALL usuariosAddOrEdit(?,?,?,?);`;
 	mysqlConnection.query(
